@@ -1,4 +1,4 @@
-# Za Ze Computer - Laravel 11 Project
+# Za Ze Computer
 
 ## 🔹 Giới thiệu
 Za Ze Computer là website bán máy tính được phát triển bằng **Laravel 11**, sử dụng **màu chủ đạo hồng** và tuân theo chuẩn **Model-View-Controller (MVC)**. Dự án bao gồm hai vai trò chính: **Admin** và **User**, được thiết kế để trình bày, quản trị và mô phệ hoá các tính năng thương mại điện tử cơ bản.
@@ -6,9 +6,9 @@ Za Ze Computer là website bán máy tính được phát triển bằng **Larav
 ---
 
 ## 💡 Kiến trúc
-- **Framework:** Laravel 11 (PHP 8.2+)
-- **CSDL:** MySQL / MariaDB
-- **Frontend:** Blade Template + Tailwind + CSS tùy chỉnh (pink-theme.css)
+- **Framework:** Laravel (PHP 8.2+)
+- **CSDL:** MySQL
+- **Frontend:** Blade Template + Tailwind + CSS tùy chỉnh
 - **Phân quyền:** `admin` và `user`
 - **Quản lý dữ liệu:** Eloquent ORM
 
@@ -108,5 +108,3 @@ php artisan serve
 
 ---
 
-## 🔗 Giấy phép
-MIT License — Copyright © 2025 Lưu Đức Hiệp
