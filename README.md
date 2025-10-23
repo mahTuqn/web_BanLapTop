@@ -1,77 +1,112 @@
-1. Tổng quan về kiến trúc chương trình
+# Za Ze Computer - Laravel 11 Project
 
-Chương trình được xây dựng trên Laravel Framework, tuân thủ mô hình Model-View-Controller (MVC).
-
-* Model (M): Đại diện cho cấu trúc dữ liệu và logic nghiệp vụ liên quan đến dữ liệu, tương tác trực tiếp với cơ sở dữ liệu.
-* View (V): Hiển thị giao diện người dùng thông qua các tệp Blade template (.blade.php).
-* Controller (C): Trung gian giữa người dùng và Model, xử lý logic nghiệp vụ và chọn View phù hợp.
-
-Mô hình MVC giúp mã nguồn dễ quản lý, mở rộng và bảo trì hơn.
+## 🔹 Giới thiệu
+Za Ze Computer là website bán máy tính được phát triển bằng **Laravel 11**, sử dụng **màu chủ đạo hồng** và tuân theo chuẩn **Model-View-Controller (MVC)**. Dự án bao gồm hai vai trò chính: **Admin** và **User**, được thiết kế để trình bày, quản trị và mô phệ hoá các tính năng thương mại điện tử cơ bản.
 
 ---
 
-2. Luồng hoạt động của chương trình (Program Execution Flow)
+## 💡 Kiến trúc
+- **Framework:** Laravel 11 (PHP 8.2+)
+- **CSDL:** MySQL / MariaDB
+- **Frontend:** Blade Template + Tailwind + CSS tùy chỉnh (pink-theme.css)
+- **Phân quyền:** `admin` và `user`
+- **Quản lý dữ liệu:** Eloquent ORM
 
-Khi người dùng truy cập trang web, tiến trình xử lý gồm các bước:
-
-1. Request: Trình duyệt gửi yêu cầu HTTP (GET/POST) tới máy chủ.
-2. Routing: Laravel xác định route tương ứng trong routes/web.php hoặc routes/admin.php.
-3. Controller: Xử lý dữ liệu đầu vào, tương tác với Model và trả về View.
-4. Model (Eloquent ORM): Thực hiện truy vấn, thêm, sửa, xóa dữ liệu.
-5. View (Blade Templates): Hiển thị dữ liệu động thông qua HTML.
-6. Response: Trả kết quả về trình duyệt để hiển thị.
+Cấu trúc tuân thủ mô hình MVC, giúp dễ mở rộng, bảo trì và kiểm thử.
 
 ---
 
-3. Phân quyền Admin và CRUD (Admin Authorization and CRUD)
-
-* Phân quyền:
-  - Admin được xác định bằng cột 'role' trong bảng users.
-  - Các route dành cho admin được bảo vệ bằng Middleware kiểm tra role.
-  - View hiển thị nội dung tùy theo vai trò người dùng.
-
-* CRUD:
-  - Các Controller trong app/Http/Controllers/Admin xử lý thao tác CRUD (Create, Read, Update, Delete).
-  - Mỗi Controller có các phương thức index(), create(), store(), edit(), update(), destroy().
+## 🔄 Luồng hoạt động chương trình
+1. **Request:** Trình duyệt gửi yêu cầu HTTP.
+2. **Routing:** Laravel định tuyến URL tới Controller tương ứng.
+3. **Controller:** Xử lý logic, tương tác Model, chuẩn bị dữ liệu.
+4. **Model:** Làm việc với CSDL bằng Eloquent ORM.
+5. **View:** Blade render HTML và trả về giao diện.
+6. **Response:** Gửi kết quả hiển thị về trình duyệt.
 
 ---
 
-4. Logic và tính năng
+## 🔒 Phân quyền & Chức năng
+### Admin
+- Quản lý sản phẩm (CRUD)
+- Quản lý bài viết (CRUD)
+- Quản lý đơn hàng
+- Quản lý người dùng
 
-* Tìm kiếm và lọc sản phẩm theo giá, danh mục.
-* Đếm lượt xem bài viết.
-* Thay đổi logo động trong giao diện người dùng và admin.
-
----
-
-5. Packages được sử dụng
-
-* Eloquent ORM
-* Blade Template Engine
-* Laravel Authentication
-* Vite + Tailwind CSS
-* Composer & NPM/Yarn
+### User
+- Xem danh sách sản phẩm & bài viết
+- Tìm kiếm, lọc sản phẩm theo danh mục/giá
+- Thêm sản phẩm vào giỏ hàng (session)
+- Thanh toán tượng trưng (tạo đơn hàng)
 
 ---
 
-6. Controller, View, Model (CVM)
 
-* Controller: Nhận request, xác thực dữ liệu, gọi Model, xử lý logic, trả View.
-* View: Render dữ liệu qua Blade template.
-* Model: Đại diện cho bảng dữ liệu, định nghĩa thuộc tính và mối quan hệ giữa các bảng.
+## 🔗 Cài đặt
+```bash
+# 1. Clone repo
+composer create-project laravel/laravel zaze_computer
+
+# 2. Cấu hình file .env
+DB_DATABASE=zaze_computer
+DB_USERNAME=root
+DB_PASSWORD=
+
+# 3. Import CSDL
+php artisan migrate:fresh --seed
+hoặc import trực tiếp file zaze_computer.sql qua phpMyAdmin
+
+# 4. Build giao diện
+npm install && npm run dev
+
+# 5. Liên kết storage (hiển thị ảnh)
+php artisan storage:link
+
+# 6. Chạy server
+php artisan serve
+```
+
+**Tài khoản mẫu:**
+- Admin: `admin@zaze.com` / `123456`
+- User: `user@zaze.com` / `123456`
 
 ---
 
-7. Tương tác với cơ sở dữ liệu
-
-* Migrations: Định nghĩa cấu trúc CSDL bằng PHP.
-* Eloquent ORM: Thao tác CRUD dễ dàng bằng cú pháp hướng đối tượng.
-* Seeding: Khởi tạo dữ liệu mẫu cho phát triển và kiểm thử.
+## 🛠️ Công nghệ sử dụng
+| Loại     | Tên                                      |
+|----------|------------------------------------------|
+| Backend  | Laravel 11, PHP 8.2                      |
+| Frontend | Blade, TailwindCSS, Vite, pink-theme.css |
+| Database | MySQL / phpMyAdmin                       |
+| ORM      | Eloquent ORM                             |
+| Auth     | Laravel Breeze                           |
+| Package  | Composer, NPM                            |
 
 ---
 
-8. Lưu trữ ảnh và dữ liệu
+## 🎨 Giao diện & Màu sắc
+- **Màu chủ đạo:** Hồng (#ff69b4)
+- **Giao diện:** card bo tròn, shadow nhẹ, sidebar hồng.
+- **View:** Blade template tùy chỉnh cho admin/user.
 
-* Ảnh: Lưu tại public/images hoặc storage/app/public.
-  - Liên kết hiển thị bằng php artisan storage:link.
-* Dữ liệu: Lưu trong MySQL, tương tác qua Model Eloquent.
+---
+
+
+## 🔋 Tính năng nổi bật
+- Quản trị CRUD toàn diện
+- Giỏ hàng bằng session
+- Thanh toán tượng trưng (lưu vào orders)
+- Lượt xem bài viết (increment views)
+- Giao diện hồng thân thiện, responsive
+
+---
+
+## 🔍 Ghi chú triển khai
+- Dọn sạch CSDL trước khi migrate (nếu import SQL trước).
+- Dùng lệnh `php artisan migrate:fresh --seed` để reset và nhập lại toàn bộ.
+- Đảm bảo đã cài Node và Composer.
+
+---
+
+## 🔗 Giấy phép
+MIT License — Copyright © 2025 Lưu Đức Hiệp
