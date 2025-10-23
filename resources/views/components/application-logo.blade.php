@@ -1,0 +1,1 @@
+<img src="{{ asset('images/logo.png') }}" alt="Za Ze Computer Logo" {{ $attributes->merge(['class' => 'h-16 w-auto rounded-full']) }}>
